@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: dynamic-threading
+  config:
+    import: optional:nacos:${spring.application.name}.yaml
+  cloud:
+    nacos:
+      config:
+        enabled: ${NACOS_CONFIG_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+      discovery:
+        enabled: ${NACOS_DISCOVERY_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:}
+
+server:
+  port: 8080
+
+threadpool:
+  pool-name: default
+  min-core-size: 4
+  max-core-size: 32
+  initial-core-size: 8
+  initial-max-size: 16
+  queue-capacity: 200
+  keep-alive-seconds: 60
+  rejection-policy: ABORT
+  scale-up-threshold: 0.80
+  scale-down-threshold: 0.25
+  scale-step: 2
+  cooldown-ms: 3000
+  monitor-interval-ms: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    prometheus:
+      enabled: true
