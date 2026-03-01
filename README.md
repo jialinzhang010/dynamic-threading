@@ -1,6 +1,6 @@
 # Dynamic Threading
 
-一个面向 Java 后端校招面试的线程池项目：实现“任务异步化 + 有界队列 + 拒绝策略 + 可观测 + 动态调参 + 热切换 + Nacos 动态配置”。
+实现“任务异步化 + 有界队列 + 拒绝策略 + 可观测 + 动态调参 + 热切换 + Nacos 动态配置”。
 
 ## 重点
 - 有界队列与背压：使用 `ArrayBlockingQueue(capacity)`，`maxPoolSize` 才有实际意义，并能稳定触发拒绝策略。
