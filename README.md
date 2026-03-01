@@ -1,9 +1,8 @@
-# Dynamic Threading (校招强化版)
+# Dynamic Threading
 
 一个面向 Java 后端校招面试的线程池项目：实现“任务异步化 + 有界队列 + 拒绝策略 + 可观测 + 动态调参 + 热切换 + Nacos 动态配置”。
 
-## 你可以重点讲的能力点
-- 请求真正走自建线程池：`POST /api/threads` 只负责提交任务并返回 `taskId`，`GET /api/tasks/{id}` 查询任务状态与耗时。
+## 重点
 - 有界队列与背压：使用 `ArrayBlockingQueue(capacity)`，`maxPoolSize` 才有实际意义，并能稳定触发拒绝策略。
 - 拒绝策略与降级：支持 `ABORT` / `CALLER_RUNS` / `DISCARD_OLDEST`，统计 `rejectCount` 与 `degradedCount`。
 - 可观测性：接入 Micrometer，暴露线程池与延迟指标，并可通过 Actuator 对接 Prometheus/Grafana。
@@ -96,7 +95,7 @@ mvn spring-boot:run
 
 默认地址：`http://localhost:8080`
 
-## 简历可直接写
+## 简历
 - 设计并实现基于 Spring Boot 的动态线程池服务，将同步请求改造为“异步提交 + 结果查询”模型，支持任务状态追踪与延迟分析。  
 - 落地有界队列和多种拒绝策略（Abort/CallerRuns/DiscardOldest），实现拒绝与降级指标统计，支持高并发场景下背压与服务保护。  
 - 接入 Micrometer + Actuator 暴露线程池与延迟指标，并整合 Nacos 配置中心实现线程池参数动态刷新及运行时热切换。
